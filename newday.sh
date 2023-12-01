@@ -3,7 +3,6 @@
 #This script initializes a new day for Advent of Code 
 
 YEAR=2023
-SESSION=XXXXX
 DAY=$1
 
 if [ -z "$DAY" ]; then
@@ -25,8 +24,9 @@ sed -i 's/^name = "template"$/name = "'$NEW_DAY'"/' $NEW_DAY/Cargo.toml
 cd $NEW_DAY/src
 
 # Download the input file for the day
+source .aoc_session
 echo "Downloading input file"
-curl -s -o input.txt https://adventofcode.com/$YEAR/day/${DAY}/input --cookie "session=$SESSION"
+curl -s -o input.txt https://adventofcode.com/$YEAR/day/${DAY}/input --cookie "session=$AOC_SESSION"
 
 # Start editing the source file
 nvim .
