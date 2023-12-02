@@ -21,7 +21,7 @@ echo "Updating template"
 sed -i 's/^name = "template"$/name = "'$NEW_DAY'"/' $NEW_DAY/Cargo.toml
 
 # Change into the src directory
-cd $NEW_DAY/src
+cd $NEW_DAY/src/bin
 
 # Download the input file for the day
 source .aoc_session
