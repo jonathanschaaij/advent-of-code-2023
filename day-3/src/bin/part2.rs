@@ -46,7 +46,8 @@ fn solve(input: &str) -> u32 {
                 let mut number = Vec::new();
                 loop {
                     number.push(lines[row][col]);
-                    lines[row][col] = ' ';
+                    lines[row][col] = ' '; // This consumes the number, I hereby assume that a
+                                           // number can only be part of 1 gear ratio..... i hope
                     col += 1;
                     if col >= lines[row].len() || !lines[row][col].is_digit(10) {
                         break;
