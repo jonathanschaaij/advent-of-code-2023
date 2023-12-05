@@ -90,13 +90,6 @@ impl ConversionMap {
                     let new_range = (conv.to_range.start + difference)
                         ..(conv.to_range.start + difference + before.end - before.start);
 
-                    if new_range.start == 0 || new_range.start == 1 {
-                        println!("Difference: {}", difference);
-                        println!("Found 0 or 1");
-                        println!("Before: {:?}", before);
-                        println!("Conversion: {:?}", conv);
-                        println!("Almanac type: {:?}", self.to);
-                    }
                     output_ranges.push(new_range); // Overlapping range is converted
                     continue;
                 }
@@ -106,12 +99,6 @@ impl ConversionMap {
                 if before.start > conv.from_range.start && before.start < conv.from_range.end {
                     let overlap_length = conv.from_range.end - before.start;
                     let new_range = (conv.to_range.end - overlap_length)..conv.to_range.end;
-                    if new_range.start == 0 || new_range.start == 1 {
-                        println!("Found 0 or 1");
-                        println!("Before: {:?}", before);
-                        println!("Conversion: {:?}", conv);
-                        println!("Almanac type: {:?}", self.to);
-                    }
                     output_ranges.push(new_range); // Overlapping range is converted
 
                     new_leftover_range.push(conv.from_range.end..before.end);
@@ -121,12 +108,6 @@ impl ConversionMap {
                 if before.end > conv.from_range.start && before.end < conv.from_range.end {
                     let overlap_length = before.end - conv.from_range.start;
                     let new_range = conv.to_range.start..(conv.to_range.start + overlap_length);
-                    if new_range.start == 0 || new_range.start == 1 {
-                        println!("Found 0 or 1");
-                        println!("Before: {:?}", before);
-                        println!("Conversion: {:?}", conv);
-                        println!("Almanac type: {:?}", self.to);
-                    }
                     output_ranges.push(new_range); // Overlapping range is converted
 
                     new_leftover_range.push(before.start..conv.from_range.start);
@@ -195,11 +176,6 @@ fn solve(file: &str) -> u64 {
         }
     }
 
-    seed_ranges.iter().for_each(|r| println!("{:?}", r));
-
-    // println!("Seed ranges: {:?}", seed_ranges);
-
-    // println!("Conversion maps: {:?}", conversion_maps);
     // Assume the conversion maps are in the correct order
     conversion_maps
         .iter()

@@ -58,7 +58,6 @@ struct ConversionMap {
 impl ConversionMap {
     fn convert(&self, value: Option<u64>) -> Option<u64> {
         if let Some(value) = value {
-            println!("Converting {} from {:?} to {:?}", value, self.from, self.to);
             for conversion in self.map.iter() {
                 if (conversion.from_val..=(conversion.from_val + conversion.range)).contains(&value)
                 {
