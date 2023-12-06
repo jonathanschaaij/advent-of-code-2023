@@ -1,17 +1,17 @@
-fn solve(file: &str) {
-    file.lines();
+use std::time::Instant;
+
+fn solve(file: &str) -> i64 {
     todo!();
 }
 
 fn main() {
     let input = include_str!("input.txt");
-    println!("Starting solution for part 1");
+    println!("Starting solution");
     let t0 = Instant::now();
     let result = solve(input);
-    let t1 = Instant::now();
-
+    let duration = t0.elapsed();
     println!("Result: {}", result);
-    println!("Time: {:?}", (t1 - t0).as_micros());
+    println!("Time: {:?}", duration);
 }
 
 #[cfg(test)]
