@@ -29,11 +29,38 @@ fn solve(file: &str) -> u64 {
         .count() as u64
 }
 
+fn solve_fast(file: &str) -> i64 {
+    let lines = file.lines().collect::<Vec<_>>();
+    let t = lines[0]
+        .split(':')
+        .nth(1)
+        .unwrap()
+        .split_whitespace()
+        .collect::<Vec<_>>()
+        .join("")
+        .parse::<f64>()
+        .unwrap();
+    let dist = lines[1]
+        .split(':')
+        .nth(1)
+        .unwrap()
+        .split_whitespace()
+        .collect::<Vec<_>>()
+        .join("")
+        .parse::<f64>()
+        .unwrap();
+
+    let t_hold_max: f64 = ((-t) - (t * t - 4_f64 * dist).sqrt()) / (-2_f64);
+    let t_hold_min: f64 = ((-t) + (t * t - 4_f64 * dist).sqrt()) / (-2_f64);
+
+    t_hold_max.ceil() as i64 - t_hold_min.floor() as i64
+}
+
 fn main() {
     let input = include_str!("input.txt");
     println!("Starting solution for part 1");
     let t0 = Instant::now();
-    let result = solve(input);
+    let result = solve_fast(input);
     let t1 = Instant::now();
 
     println!("Result: {}", result);
