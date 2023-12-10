@@ -183,31 +183,31 @@ fn solve(file: &str) -> i64 {
             }
             // Check left side for vertical pipeWalls
             let mut check_pos = (x, y);
-            let mut wall_count_left = 0;
+            // let mut wall_count_left = 0;
             let mut wall_count_top = 0;
             let mut connections_a = 0;
             let mut connections_b = 0;
-            loop {
-                check_pos = (check_pos.0 - 1, check_pos.1);
-                let check_elem = map[check_pos.1][check_pos.0];
-
-                // if check_elem == PipeElements::Vertical {
-                // wall_count_left += 1;
-                // }
-                if check_elem.get_directions().contains(&Direction::North) {
-                    connections_a += 1;
-                }
-                if check_elem.get_directions().contains(&Direction::South) {
-                    connections_b += 1;
-                }
-                if check_pos.0 <= min_pos.0 {
-                    break;
-                }
-            }
-            wall_count_left += connections_a.min(connections_b);
-            connections_a = 0;
-            connections_b = 0;
-            check_pos = (x, y);
+            // loop {
+            //     check_pos = (check_pos.0 - 1, check_pos.1);
+            //     let check_elem = map[check_pos.1][check_pos.0];
+            //
+            //     // if check_elem == PipeElements::Vertical {
+            //     // wall_count_left += 1;
+            //     // }
+            //     if check_elem.get_directions().contains(&Direction::North) {
+            //         connections_a += 1;
+            //     }
+            //     if check_elem.get_directions().contains(&Direction::South) {
+            //         connections_b += 1;
+            //     }
+            //     if check_pos.0 <= min_pos.0 {
+            //         break;
+            //     }
+            // }
+            // wall_count_left += connections_a.min(connections_b);
+            // connections_a = 0;
+            // connections_b = 0;
+            // check_pos = (x, y);
             loop {
                 check_pos = (check_pos.0, check_pos.1 - 1);
                 let check_elem = map[check_pos.1][check_pos.0];
@@ -227,20 +227,21 @@ fn solve(file: &str) -> i64 {
             }
             wall_count_top += connections_a.min(connections_b);
 
-            if wall_count_left % 2 == 1 && wall_count_top % 2 == 1 {
-                map[y][x] = PipeElements::ENCLOSED;
-                println! {"Enclosed: ({}, {})", x, y};
+            // if wall_count_left % 2 == 1 && wall_count_top % 2 == 1 {
+            if wall_count_top % 2 == 1 {
+                // map[y][x] = PipeElements::ENCLOSED;
+                // println! {"Enclosed: ({}, {})", x, y};
                 enclosed += 1;
             }
         }
     }
-    println! {"MAP:\t\tmin({:?}) max({:?})", min_pos, max_pos};
-    for row in &map {
-        for elem in row {
-            print!("{:?}", elem);
-        }
-        println!();
-    }
+    // println! {"MAP:\t\tmin({:?}) max({:?})", min_pos, max_pos};
+    // for row in &map {
+    //     for elem in row {
+    //         print!("{:?}", elem);
+    //     }
+    //     println!();
+    // }
     enclosed
 }
 fn main() {
