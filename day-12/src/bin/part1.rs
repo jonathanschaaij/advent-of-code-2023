@@ -120,7 +120,11 @@ fn solve(file: &str) -> i64 {
             //     groups.iter().sum::<i64>()
             // );
 
-            count_solutions(&groups, map, &unknown_pos, missing)
+            let num = count_solutions(&groups, map, &unknown_pos, missing);
+            // println!("{}, \t num: {}", line, num);
+            println!("{}", num);
+
+            num
         })
         .sum()
 }
@@ -146,7 +150,8 @@ mod tests {
 ?#?#?#?#?#?#?#? 1,3,1,6
 ????.#...#... 4,1,1
 ????.######..#####. 1,6,5
-?###???????? 3,2,1";
-        assert_eq!(solve(input), 21);
+?###???????? 3,2,1
+?.???...?? 1,1,1";
+        assert_eq!(solve(input), 30);
     }
 }
